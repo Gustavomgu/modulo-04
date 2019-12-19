@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
+import TechItem from './TechItem'
+
 class TechList extends Component {
   //Estados são imutaveis, devemos utilizar o this.setState para mudar infos do state
+  // As funções que podem manipular o estado tem que estar no mesmo componente que o estado
   state = {
     newTech: '',
     techs: [
@@ -34,11 +37,8 @@ class TechList extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <ul>
-        {this.state.techs.map(tech => (
-          <li key={tech}>
-            {tech}
-            <button onClick={() => this.handleDelete(tech)} type="button">Remover</button>
-          </li>))}
+        {this.state.techs.map(tech =>  <TechItem key={tech} tech={tech} onDelete={() => this.handleDelete(tech)}></TechItem> )}
+        <TechItem onDelete={() => this.handleDelete()}></TechItem>
         </ul>
         <input type="text" onChange={this.handleInputChange} value={this.state.newTech}></input>
         <button type="submit">Enviar</button>
