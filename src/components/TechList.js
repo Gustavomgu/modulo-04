@@ -7,12 +7,30 @@ class TechList extends Component {
   // As funções que podem manipular o estado tem que estar no mesmo componente que o estado
   state = {
     newTech: '',
-    techs: [
-      'NodeJS',
-      'ReactJS',
-      'React Native',
-    ]
+    techs: []
   };
+
+  //Manipular estados do componente é um passo importante para usar react
+
+  //Executa ação assim que esse componente é carregado
+  componentDidMount() {
+    // Posso carregar uma api aqui
+  }
+
+  //Carregado sempre que há atualização nas props ou states
+  componentDidUpdate(prevProp, prevState) {
+    //Como parametros recebe as propriedades e o estado anterior
+    //this.props - propriedades atuais - posso muda-las
+    //this.state - estado atual - posso le-las
+    // Posso fazer uma comparação entre estados novos e anteriores aqui
+  }
+
+  //Utilizado quando o componente deixa de existir
+  componentWillUnmount() {
+
+  }
+
+
 
   handleInputChange = e => {
     this.setState({newTech: e.target.value});
