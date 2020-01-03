@@ -14,15 +14,18 @@ class TechList extends Component {
 
   //Executa ação assim que esse componente é carregado
   componentDidMount() {
-    // Posso carregar uma api aqui
+    const techs = localStorage.getItem('techs');
+
+    if (techs) {
+      this.setState({ techs: JSON.parse(techs)});
+    }
   }
 
   //Carregado sempre que há atualização nas props ou states
-  componentDidUpdate(prevProp, prevState) {
-    //Como parametros recebe as propriedades e o estado anterior
-    //this.props - propriedades atuais - posso muda-las
-    //this.state - estado atual - posso le-las
-    // Posso fazer uma comparação entre estados novos e anteriores aqui
+  componentDidUpdate(_,prevState) {
+    if(prevState.techs !== this.state.techs) {
+      localStorage.setItem('techs',JSON.stringify(this.state.techs));
+    }
   }
 
   //Utilizado quando o componente deixa de existir
